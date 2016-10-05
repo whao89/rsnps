@@ -2,8 +2,6 @@
 #' 
 #' @export
 #' @param SNPs A vector of SNPs (rs numbers).
-#' @param ... Further named parameters passed on to 
-#' \code{\link[httr]{config}} to debug curl.
 #' 
 #' @importFrom stats setNames
 #' @importFrom methods is
@@ -20,7 +18,7 @@
 #' NCBI_snp_query2("rs111068718") # chromosomal information may be unmapped
 #' }
 
-NCBI_snp_query2 <- function(SNPs, ...) {
+NCBI_snp_query2 <- function(SNPs) {
   tmp <- sapply( SNPs, function(x) { 
     grep( "^rs[0-9]+$", x) 
   })
@@ -31,7 +29,7 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   }
   url <- "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
   res <- GET(url, query = list(db = 'snp', retmode = 'flt', rettype = 'flt', 
-                               id = paste( SNPs, collapse = ",")), ...)
+                               id = paste( SNPs, collapse = ",")))
   stop_for_status(res)
   tmp <- content(res, "text", encoding = "UTF-8")
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
@@ -40,6 +38,9 @@ NCBI_snp_query2 <- function(SNPs, ...) {
   for (i in seq_along(dat)) {
     z <- dat[[i]]
     ctg <- z$ctg
+    #find all the fxn class 
+    loctmp <- unlist(z$loc)
+    loctmp <- loctmp[names(loctmp)=="fxnClass"]
     dfs[[i]] <- data.frame(query = names(dat[i]), 
                            marker = z$rs$snp,
                            organism = rn(z$rs$organism), 
