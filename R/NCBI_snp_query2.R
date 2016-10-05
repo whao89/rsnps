@@ -41,6 +41,8 @@ NCBI_snp_query2 <- function(SNPs) {
     #find all the fxn class 
     loctmp <- unlist(z$loc)
     loctmp <- loctmp[names(loctmp)=="fxnClass"]
+    fxn <- sort(unique(loctmp))
+    fxn <- paste(fxn, sep="|")
     dfs[[i]] <- data.frame(query = names(dat[i]), 
                            marker = z$rs$snp,
                            organism = rn(z$rs$organism), 
@@ -50,6 +52,7 @@ NCBI_snp_query2 <- function(SNPs) {
                            minor = rn(z$gmaf$allele),
                            maf = rn(z$gmaf$freq),
                            bp = rn(ctg$physmapInt),
+			   func = fxn,
                            stringsAsFactors = FALSE)
   }
   dfs <- do.call("rbind.data.frame", dfs)
