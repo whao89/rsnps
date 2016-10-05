@@ -42,7 +42,8 @@ NCBI_snp_query2 <- function(SNPs) {
     loctmp <- unlist(z$loc)
     loctmp <- loctmp[names(loctmp)=="fxnClass"]
     fxn <- sort(unique(loctmp))
-    fxn <- paste(fxn, sep="|")
+    fxn <- paste(fxn, collapse="|")
+    
     dfs[[i]] <- data.frame(query = names(dat[i]), 
                            marker = z$rs$snp,
                            organism = rn(z$rs$organism), 
