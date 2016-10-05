@@ -59,8 +59,9 @@ NCBI_snp_query2 <- function(SNPs) {
   dfs <- do.call("rbind.data.frame", dfs)
   row.names(dfs) <- NULL
   dfs$bp <- as.numeric(dfs$bp)
-  return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
-  Sys.sleep(0.33)
+  #return( structure(list(summary = dfs, data = dat), class = "dbsnp") )
+  return( structure(list(summary = dfs), class = "dbsnp") )
+  #Sys.sleep(0.33)
 }
 
 #' @export
