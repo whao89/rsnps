@@ -1,6 +1,5 @@
 #' Query NCBI's dbSNP for information on a set of SNPs
 #' 
-#' @export
 #' @param SNPs A vector of SNPs (rs numbers).
 #' 
 #' @importFrom stats setNames

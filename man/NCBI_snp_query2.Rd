@@ -4,13 +4,10 @@
 \alias{NCBI_snp_query2}
 \title{Query NCBI's dbSNP for information on a set of SNPs}
 \usage{
-NCBI_snp_query2(SNPs, ...)
+NCBI_snp_query2(SNPs)
 }
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}
-
-\item{...}{Further named parameters passed on to 
-\code{\link[httr]{config}} to debug curl.}
 }
 \description{
 Query NCBI's dbSNP for information on a set of SNPs

@@ -7,7 +7,6 @@
 #' @param SNPs A vector of SNPs (rs numbers).
 #' @param ... Further named parameters passed on to \code{\link[httr]{config}} to debug curl.
 #' See examples.
-#' @export
 #' @return A dataframe with columns:
 #' \itemize{
 #' \item \code{Query:} The rs ID that was queried.

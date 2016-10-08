@@ -23,7 +23,8 @@ Imports:
     XML,
     jsonlite,
     stats,
-    methods
+    methods,
+    parallel
 Suggests:
     testthat,
     rjson,
