@@ -7,7 +7,7 @@
 #' @param hownice how nice? options are: c("very", "somewhat", "not")
 #' 
 
-NCBI_snp_query_par <- function(SNPs, blocksize=25, numcores=28, hownice="very"){
+NCBI_snp_query_par <- function(SNPs, blocksize=200, numcores=28, hownice="very"){
   hownice <- match.arg(hownice, c("very", "somewhat", "not"))
   if(hownice=="very"){
     nice <- function(){Sys.sleep(runif(1, 3, 8))}
