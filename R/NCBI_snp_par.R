@@ -10,9 +10,9 @@
 NCBI_snp_query_par <- function(SNPs, blocksize=200, numcores=36, hownice="very"){
   hownice <- match.arg(hownice, c("very", "somewhat", "not"))
   if(hownice=="very"){
-    nice <- function(){Sys.sleep(runif(1, 1, 10))}
+    nice <- function(){Sys.sleep(runif(1, 1, 8))}
   } else if(hownice=="somewhat"){
-    nice <- function(){Sys.sleep(runif(1, 1, 5))}
+    nice <- function(){Sys.sleep(runif(1, 1, 4))}
   } else if(hownice=="not") {
     nice <- function(){Sys.sleep(runif(1, 0.01, 0.5))}
   }
