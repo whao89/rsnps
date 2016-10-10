@@ -35,7 +35,7 @@ NCBI_snp_query_par <- function(SNPs, blocksize=200, numcores=36, hownice="very")
   is_not_DF <- sapply(LDF, class) != "data.frame"
   
   while(sum(is_not_DF) != 0) {
-    print("some elements not data.frame, requerying")
+    print(paste("some elements not data.frame, requerying", sum(is_not_DF)))
     
     new_LDF <- mclapply( which(is_not_DF),
 		  query_dbSNP,
