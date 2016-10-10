@@ -2,6 +2,7 @@
 
 S3method(print,dbsnp)
 export(LDSearch)
+export(NCBI_snp_query2)
 export(NCBI_snp_query_par)
 export(allgensnp)
 export(allphenotypes)

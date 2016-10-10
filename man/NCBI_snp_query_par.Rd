@@ -4,8 +4,7 @@
 \alias{NCBI_snp_query_par}
 \title{Query NCBI's dbSNP for information on a set of SNPs}
 \usage{
-NCBI_snp_query_par(SNPs, blocksize = 1000, numcores = 28,
-  hownice = "very")
+NCBI_snp_query_par(SNPs, blocksize = 200, numcores = 36, hownice = "very")
 }
 \arguments{
 \item{SNPs}{A vector of SNPs (rs numbers).}

@@ -4,6 +4,7 @@
 #' 
 #' @importFrom stats setNames
 #' @importFrom methods is
+#' @export
 #' 
 #' @examples \dontrun{
 #' SNPs <- c("rs332", "rs420358", "rs1837253", "rs1209415715", "rs111068718")
