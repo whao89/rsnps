@@ -33,7 +33,16 @@ NCBI_snp_query2 <- function(SNPs) {
   stop_for_status(res)
   tmp <- content(res, "text", encoding = "UTF-8")
   tmpsplit <- strsplit(tmp, "\n\n")[[1]]
-  dat <- setNames(lapply(tmpsplit, parse_data), SNPs)
+  #dat <- setNames(lapply(tmpsplit, parse_data), SNPs)
+  
+  # what if for some reason a SNP failed to return 
+  parsed <- lapply(tmpsplit, parse_data)
+  SNPs2 <- sapply(1:length(parsed), function(i){parsed[[i]]$rs$snp})
+  dat <- setNames(lapply(tmpsplit, parse_data), SNPs2)
+  if(length(SNPs) != length(SNPs2)){
+    print("one group lost at least one SNP")
+  }
+  
   dfs <- list()
   for (i in seq_along(dat)) {
     z <- dat[[i]]
