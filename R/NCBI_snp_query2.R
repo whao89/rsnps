@@ -50,8 +50,21 @@ NCBI_snp_query2 <- function(SNPs) {
     #find all the fxn class 
     loctmp <- unlist(z$loc)
     loctmp <- loctmp[names(loctmp)=="fxnClass"]
-    fxn <- sort(unique(loctmp))
-    fxn <- paste(fxn, collapse="|")
+    if(!is.null(loctmp)) {
+      fxn <- sort(unique(loctmp))
+      fxn <- paste(fxn, collapse="|")
+    } else{
+      fxn <- ""
+    }
+    
+    #is there a gene?
+    loctmp <- unlist(z$loc)
+    loctmp <- loctmp[names(loctmp)=="geneID"]
+    if(!is.null(loctmp)) {
+      inGene <- TRUE
+    } else{
+      inGene <- FALSE
+    }
     
     dfs[[i]] <- data.frame(query = names(dat[i]), 
                            marker = z$rs$snp,
@@ -63,6 +76,7 @@ NCBI_snp_query2 <- function(SNPs) {
                            maf = rn(z$gmaf$freq),
                            bp = rn(ctg$physmapInt),
 			   func = fxn,
+			   gene = inGene,
                            stringsAsFactors = FALSE)
   }
   dfs <- do.call("rbind.data.frame", dfs)
